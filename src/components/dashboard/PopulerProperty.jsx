@@ -1,6 +1,5 @@
 import React from "react";
-import { MapPin, Bed, Bath, Square } from "lucide-react";
-import { LiaBedSolid } from "react-icons/lia";
+import { MapPin } from "lucide-react";
 import maximize from "../../assets/shared-icons-img/maximize-3.png";
 import solar_bath_linear from "../../assets/shared-icons-img/solar_bath-linear.png";
 import solar_bed_broken from "../../assets/shared-icons-img/solar_bed-broken.png";
@@ -44,114 +43,124 @@ const PopulerProperty = () => {
       image:
         "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&h=400&fit=crop",
     },
-
   ];
 
   return (
-    <>
-      <div>
-        {/* property section  */}
-        <section className="mx-auto px-2">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900">
-              Popular Property
-            </h2>
-            <button className="text-green-500 font-medium hover:underline">
-              See more
-            </button>
-          </div>
+    <div className="w-full max-w-7xl mx-auto  sm:px-4 lg:px-6">
+      <section className="py-6 sm:py-8">
+        {/* Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">
+            Popular Property
+          </h2>
+          <button className="text-green-500 font-medium hover:underline self-start sm:self-auto">
+            See more
+          </button>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {properties.map((property) => (
-              <Link
-                to={"/property-details/:id"}
-                key={property.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative p-3 rounded-xl h-64 overflow-hidden">
-                  <img
-                    src={property.image}
-                    alt={property.title}
-                    className="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-500"
-                  />
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
+          {properties.map((property) => (
+            <Link
+              to={`/property-details/${property.id}`}
+              key={property.id}
+              className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
+            >
+              {/* Image */}
+              <div className="relative p-3 h-52 sm:h-56 lg:h-64 overflow-hidden">
+                <img
+                  src={property.image}
+                  alt={property.title}
+                  className="w-full h-full object-cover rounded-xl hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-4 sm:p-5 lg:p-6">
+                <div className="flex justify-between items-start mb-2 sm:mb-3">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900">
+                    {property.title}
+                  </h3>
+                  <p className="text-base sm:text-lg font-bold text-gray-900">
+                    {property.price}
+                  </p>
                 </div>
 
-                <div className="p-6">
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-bold text-gray-900">
-                      {property.title}
-                    </h3>
-                    <p className="text-lg font-bold text-gray-900">
-                      {property.price}
-                    </p>
+                <div className="flex items-start gap-1 text-gray-500 text-xs sm:text-sm mb-3 sm:mb-4">
+                  <MapPin className="w-4 h-4 mt-[2px]" />
+                  <span>{property.location}</span>
+                </div>
+
+                {/* Meta */}
+                <div className="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-gray-200 text-xs sm:text-sm">
+                  <div className="flex items-center text-gray-600">
+                    <img
+                      src={solar_bed_broken}
+                      alt="Beds"
+                      className="w-4 h-4 mr-1"
+                    />
+                    {property.beds} Beds
                   </div>
 
-                  <div className="flex items-center text-gray-500 text-sm mb-4">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    <span>{property.location}</span>
+                  <div className="flex items-center text-gray-600">
+                    <img
+                      src={solar_bath_linear}
+                      alt="Baths"
+                      className="w-4 h-4 mr-1"
+                    />
+                    {property.baths} Baths
                   </div>
 
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <img
-                        src={solar_bed_broken}
-                        alt="Beds"
-                        className="w-4 h-4 mr-1"
-                      />
-                      <span>{property.beds} Beds</span>
-                    </div>
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <img
-                        src={solar_bath_linear}
-                        alt="Baths"
-                        className="w-4 h-4 mr-1"
-                      />
-                      <span>{property.baths} Baths</span>
-                    </div>
-                    <div className="flex items-center text-gray-600 text-sm">
-                      <img
-                        src={maximize}
-                        alt="Square Feet"
-                        className="w-4 h-4 mr-1"
-                      />
-                      <span>{property.sqft} sqft</span>
-                    </div>
+                  <div className="flex items-center text-gray-600">
+                    <img
+                      src={maximize}
+                      alt="Sqft"
+                      className="w-4 h-4 mr-1"
+                    />
+                    {property.sqft} sqft
                   </div>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        {/* map section */}
-        <section className="p-4">
-          <div className=" flex justify-between items-center my-8">
-            <h3 className="text-2xl font-semibold">Find the nearest of you</h3>
-            <div className="flex items-center gap-2 font-semibold text-[20px]">
-              <BiShapeSquare />
-              <p className="">Radius 20 km</p>
-            </div>
-          </div>
-
-          <div className="bg-white shadow p-4 rounded-2xl">
-            <div className="flex justify-between items-center my-5">
-              <div className="flex items-center gap-2 font-semibold text-[20px]">
-                <HiOutlineBuildingOffice2 />
-                <p> Showing 9 Resultas</p>
               </div>
-              <div className="flex items-center gap-2 font-semibold text-[20px]">
-                <IoLocationOutline />
-                <p>Semarang, Indoesia</p>
-              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="py-8 sm:py-10">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
+          <h3 className="text-xl sm:text-2xl font-semibold">
+            Find the nearest of you
+          </h3>
+
+          <div className="flex items-center gap-2 font-semibold text-base sm:text-lg">
+            <BiShapeSquare />
+            <p>Radius 20 km</p>
+          </div>
+        </div>
+
+        <div className="bg-white shadow p-3 sm:p-4 rounded-2xl">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 my-4 sm:my-5">
+            <div className="flex items-center gap-2 font-semibold text-sm sm:text-lg">
+              <HiOutlineBuildingOffice2 />
+              <p>Showing 9 Results</p>
             </div>
-            <div className="rounded-2xl"> 
-                <img className="rounded-2xl" src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg?mbid=social_retweet" alt="" />
+
+            <div className="flex items-center gap-2 font-semibold text-sm sm:text-lg">
+              <IoLocationOutline />
+              <p>Semarang, Indonesia</p>
             </div>
           </div>
-        </section>
-      </div>
-    </>
+
+          <div className="rounded-2xl overflow-hidden h-56 sm:h-72 lg:h-[420px]">
+            <img
+              className="w-full h-full object-cover"
+              src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
+              alt="Map"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
