@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import WalletDashboard from "../components/my-wallet/WalletDashboard";
 
 const MyWallet = () => {
-    return (
-        <div>
-            this is My Wallet pages
-        </div>
-    )
-}
+  return (
+    <div>
+      <WalletDashboard />
+    </div>
+  );
+};
 
-export default MyWallet
+export default MyWallet;

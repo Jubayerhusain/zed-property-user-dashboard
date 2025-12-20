@@ -5,6 +5,7 @@ import Message from "./pages/Message";
 import Profile from "./pages/Profile";
 import AccountSettings from "./pages/AccountSettings";
 import MyWallet from "./pages/MyWallet";
+import ProfileEditForm from "./components/profile/ProfileEditForm";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: 'profile/profile-edit',
+        element: <ProfileEditForm />
       },
       {
         path: "account-settings",

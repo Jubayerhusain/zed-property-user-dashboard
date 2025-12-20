@@ -1,9 +1,10 @@
 import React from 'react'
+import AccountSettingsForm from '../components/account-settings/AccountSettingsForm'
 
 const AccountSettings = () => {
     return (
         <div>
-            thi is AccountSettings page 
+            <AccountSettingsForm />
         </div>
     )
 }
